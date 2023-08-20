@@ -12,6 +12,5 @@
         public string Author { get; set; }
         public bool IsVisable { get; set; }
 
-
     }
 }
