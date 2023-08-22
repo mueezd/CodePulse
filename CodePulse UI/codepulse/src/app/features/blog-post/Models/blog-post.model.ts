@@ -7,5 +7,5 @@ export interface BlogPost{
     urlHandel: string;
     author: string;
     publishDate: Date;
-    isVisible: boolean;
+    isVisable: boolean;
 }
