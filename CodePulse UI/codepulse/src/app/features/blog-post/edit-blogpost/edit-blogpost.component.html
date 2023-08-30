@@ -38,7 +38,9 @@
                 </div>
 
                 <div class="mt-3">
-                    <label for="imageUrl" class="form-label">Featured Image Url</label>
+                    <label for="imageUrl" class="form-label">Featured Image Url
+                        <button type="button" class="btn btn-light" (click)="openImageSelector()">Select Image</button>
+                    </label>
                     <ng-container *ngIf="model.featuredImageUrl != ''">
                         <div>
                             <img [src]="model.featuredImageUrl" height="100" class="my-2">
@@ -83,8 +85,17 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-danger ms-3" (click)="onDelete()">Delete</button>
                 </div>
-
             </div>
         </form>
     </ng-container>
 </div>
+
+
+
+
+<div class="images-container-model" [ngClass]="{'a-block': isImageSelectorVisavle, 'd-none': !isImageSelectorVisavle}">
+    <button type="button" class="btn btn-light" style="position: fixed; top:10px;  right: 10px;" (click)="closeImageSelector()">X</button>
+    <app-image-selector></app-image-selector>
+</div>
+
+

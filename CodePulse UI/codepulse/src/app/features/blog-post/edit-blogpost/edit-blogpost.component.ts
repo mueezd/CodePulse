@@ -19,6 +19,7 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
   updateBlogPostSubscription?: Subscription;
   getBlogPostSubscription?: Subscription;
   deleteBlogPostSubscription?: Subscription;
+  isImageSelectorVisavle: boolean = false;
 
 
 
@@ -89,6 +90,14 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  openImageSelector(): void{
+    this.isImageSelectorVisavle = true;
+  }
+
+  closeImageSelector(): void{
+    this.isImageSelectorVisavle = false;
   }
 
   ngOnDestroy(): void {
