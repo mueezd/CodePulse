@@ -1,6 +1,7 @@
 ﻿using CodePulse.API.Data;
 using CodePulse.API.Models.DomainModels;
 using CodePulse.API.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodePulse.API.Repositories.Implementation
 {
@@ -18,6 +19,12 @@ namespace CodePulse.API.Repositories.Implementation
             _httpContextAccessor = httpContextAccessor;
             _dbContext = dbContext;
         }
+
+        public async Task<IEnumerable<BlogImage>> getAll()
+        {
+            return await _dbContext.BlogImages.ToListAsync();
+        }
+
         public async Task<BlogImage> Upload(IFormFile file, BlogImage blogImage)
         {
             var localPath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images", $"{blogImage.FileName}{blogImage.FileExtention}");
