@@ -24,12 +24,9 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
 
   isImageSelectorVisavle: boolean = false;
 
-
-
   model?: BlogPost;
   categories$?: Observable<category[]>;
   selectedCategories?: string[];
-
 
   constructor(private route: ActivatedRoute,
     private blogPostService: BlogPostService,

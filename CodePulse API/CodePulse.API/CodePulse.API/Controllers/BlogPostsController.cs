@@ -150,6 +150,46 @@ namespace CodePulse.API.Controllers
 
         }
 
+        //GET: By UrlHandel
+        [HttpGet]
+        [Route("{urlHandel}")]
+        public async Task<IActionResult> GetBlogPostByUrlHandel([FromRoute] string urlHandel)
+        {
+            //get blog popst detail from repository
+
+            var blogPost = await _blogPostRepository.GetByUrlHandelAsync(urlHandel);
+
+            //Convert To DTO
+
+            if (blogPost is null)
+            {
+                return NotFound();
+            }
+
+            //Convert to domain mo0del to DTO
+            var response = new BlogPostDto
+            {
+                Id = blogPost.Id,
+                Title = blogPost.Title,
+                ShortDescription = blogPost.ShortDescription,
+                Content = blogPost.Content,
+                FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                UrlHandel = blogPost.UrlHandel,
+                PublishedDate = blogPost.PublishedDate,
+                Author = blogPost.Author,
+                IsVisable = blogPost.IsVisable,
+                Categories = blogPost.Categories.Select(x => new CategoryDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    UrlHandel = x.UrlHandel
+                }).ToList()
+            };
+
+            return Ok(response);
+
+        }
+
 
         // PUT: {apibaseurl}/api/blogpost/{id}
         [HttpPut]
