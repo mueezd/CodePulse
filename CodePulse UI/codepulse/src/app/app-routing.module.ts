@@ -8,16 +8,19 @@ import { EditBlogpostComponent } from './features/blog-post/edit-blogpost/edit-b
 import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
 import { HomeComponent } from './features/Public/home/home.component';
 import { BlogDetailsComponent } from './features/Public/blog-details/blog-details.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { authGuard } from './features/auth/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'blog/:url', component: BlogDetailsComponent },
-  { path: 'admin/categories', component: CategoryListComponent },
-  { path: 'admin/categories/add', component: AddCategoryComponent },
-  { path: 'admin/categories/:id', component: EditCategoryComponent },
-  { path: 'admin/blogpost', component: BlogpostListComponent },
-  { path: 'admin/blogpost/add', component: AddBlogpostComponent },
-  { path: 'admin/blogpost/:id', component: EditBlogpostComponent },
+  { path: 'admin/categories', component: CategoryListComponent, canActivate: [authGuard] },
+  { path: 'admin/categories/add', component: AddCategoryComponent, canActivate: [authGuard] },
+  { path: 'admin/categories/:id', component: EditCategoryComponent, canActivate: [authGuard] },
+  { path: 'admin/blogpost', component: BlogpostListComponent, canActivate: [authGuard] },
+  { path: 'admin/blogpost/add', component: AddBlogpostComponent, canActivate: [authGuard] },
+  { path: 'admin/blogpost/:id', component: EditBlogpostComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
